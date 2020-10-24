@@ -1,11 +1,15 @@
 import cheerio from "cheerio";
 import axios from "axios";
-
+const config = {
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+};
 var anime = [];
 export async function getUrl() {
   anime = [];
   const link = "https://otakudesu.tv/ongoing-anime/";
-  const result = await axios.get(link);
+  const result = await axios.get(link, config.headers);
   const $ = cheerio.load(result.data);
   anime.push({
     date: Date.now(),
@@ -24,7 +28,7 @@ export async function getUrl() {
 }
 var episode = [];
 export async function getListEpisode(url) {
-  const result = await axios.get(url);
+  const result = await axios.get(url, config.headers);
   const $ = cheerio.load(result.data);
   episode = [];
   $(".episodelist li").each(function () {
@@ -41,7 +45,7 @@ export async function getListEpisode(url) {
 }
 
 export async function getWatch(url) {
-  const result = await axios.get(url);
+  const result = await axios.get(url, config.headers);
   const $ = cheerio.load(result.data);
   const data = $(".responsive-embed-stream").find("iframe").attr("src");
   return data;
