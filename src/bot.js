@@ -18,7 +18,7 @@ client.on("message", async (message) => {
     var anime = [];
     if (cmd === "help") {
       message.channel.send(
-        "```Anistream Help Menu\ngunakan =command\n\ncommands list\nongoing untuk mencari anime musim ini\nnonton```"
+        "```Anistream Help Menu\ngunakan =command\n\ncommands list\nongoing = untuk mencari anime musim ini\nanime = untuk mendapatkan episode dari ID anime \nnonton = untuk mendapatkan link menonton anime dari id anime dan id episode```"
       );
     } else if (cmd === "ongoing") {
       message.channel.send("Tunggu sebentar ya..");
@@ -30,7 +30,7 @@ client.on("message", async (message) => {
 
       message.channel.send(anime);
       message.channel.send(
-        "**Silakan pilih nomor** dengan command **=nonton** nomor, cth: =nonton 7"
+        "**Silakan pilih nomor** dengan command **=anime <anime_id>**, cth: =anime 7"
       );
     } else if (cmd === "nonton") {
       if (args[0] === undefined) {
@@ -54,7 +54,7 @@ client.on("message", async (message) => {
         message.channel.send(getUrl);
         message.channel.send("Selamat menonton, link sudah tersedia!");
       }
-    } else if (cmd === "episode") {
+    } else if (cmd === "anime") {
       if (args[0] === undefined) {
         message.channel.send("anda belum memasukan angka");
       } else {
@@ -83,7 +83,7 @@ client.on("message", async (message) => {
           message.channel.send(err);
         }
         message.channel.send(
-          "**Silakan pilih nomor** dengan command **=nonton nomor episode**, cth: =nonton 7 **2**"
+          "**Silakan pilih nomor** dengan command **=nonton <anime_id> <episode_id>**, cth: =nonton 7 **2**"
         );
       }
     } else if (cmd === "test") {
